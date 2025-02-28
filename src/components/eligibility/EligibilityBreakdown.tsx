@@ -126,7 +126,7 @@ const EligibilityBreakdown: React.FC = () => {
               </p>
               <div className="mt-4">
                 <a href="/contact" className="text-brand-blue font-medium hover:underline">
-                  בדוק זכאות עכשיו >
+                  בדוק זכאות עכשיו
                 </a>
               </div>
             </div>

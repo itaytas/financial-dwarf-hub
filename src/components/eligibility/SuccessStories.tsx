@@ -2,7 +2,7 @@
 import React from 'react';
 import { useScrollReveal } from '@/utils/animations';
 import { formatCurrency } from '@/utils/formatters';
-import { Quote, Star } from 'lucide-react';
+import { Quote, Star, ChevronLeft } from 'lucide-react';
 
 interface SuccessStoryProps {
   name: string;
