@@ -2,24 +2,17 @@
 import React, { useState } from 'react';
 import { X, Download, CheckCircle } from 'lucide-react';
 
-const LeadMagnet: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+interface LeadMagnetProps {
+  onClose?: () => void;
+}
+
+const LeadMagnet: React.FC<LeadMagnetProps> = ({ onClose }) => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   
-  // This would typically be triggered by exit intent or timer
-  // For demo purposes, let's show it after a delay
-  React.useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsOpen(true);
-    }, 5000);
-    
-    return () => clearTimeout(timer);
-  }, []);
-  
   const handleClose = () => {
-    setIsOpen(false);
+    if (onClose) onClose();
   };
   
   const handleSubmit = (e: React.FormEvent) => {
@@ -33,7 +26,7 @@ const LeadMagnet: React.FC = () => {
     
     // Close popup after success
     setTimeout(() => {
-      setIsOpen(false);
+      handleClose();
       
       // Reset form for next time
       setTimeout(() => {
@@ -43,8 +36,6 @@ const LeadMagnet: React.FC = () => {
       }, 500);
     }, 2000);
   };
-  
-  if (!isOpen) return null;
   
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in">

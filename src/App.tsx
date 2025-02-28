@@ -9,6 +9,8 @@ import NotFound from "./pages/NotFound";
 import MainLayout from "./layouts/MainLayout";
 import HowItWorksPage from "./pages/HowItWorks";
 import EligibilityCalculatorPage from "./pages/EligibilityCalculator";
+import Blog from "./pages/Blog";
+import ArticleTemplate from "./pages/ArticleTemplate";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +24,9 @@ const App = () => (
           <Route path="/" element={<MainLayout><Index /></MainLayout>} />
           <Route path="/how-it-works" element={<HowItWorksPage />} />
           <Route path="/eligibility" element={<EligibilityCalculatorPage />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/category/:categoryId" element={<Blog />} />
+          <Route path="/blog/:articleId" element={<ArticleTemplate />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -2,18 +2,26 @@
 import React, { useState } from 'react';
 import { Search, X } from 'lucide-react';
 
-const BlogHero: React.FC = () => {
+interface BlogHeroProps {
+  onSearch?: (query: string) => void;
+}
+
+const BlogHero: React.FC<BlogHeroProps> = ({ onSearch }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle search (would typically link to search results page)
-    console.log('Searching for:', searchQuery);
+    if (onSearch && searchQuery.trim()) {
+      onSearch(searchQuery.trim());
+    }
   };
 
   const clearSearch = () => {
     setSearchQuery('');
+    if (onSearch) {
+      onSearch('');
+    }
   };
 
   return (

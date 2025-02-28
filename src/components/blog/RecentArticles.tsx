@@ -2,71 +2,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Clock, ArrowLeft, ChevronLeft } from 'lucide-react';
+import { BlogArticle, getRelatedArticles } from '@/utils/blogData';
 
-interface Article {
-  id: string;
-  title: string;
-  excerpt: string;
-  image: string;
-  category: string;
-  readTime: number;
-  url: string;
-  date: string;
+interface RecentArticlesProps {
+  articles: BlogArticle[];
 }
 
-const RecentArticles: React.FC = () => {
-  const articles: Article[] = [
-    {
-      id: 'common-mistakes',
-      title: '5 טעויות נפוצות שמונעות ממך החזר מס',
-      excerpt: 'טעויות נפוצות שאנשים עושים בהגשת בקשה להחזר מס, וכיצד להימנע מהן',
-      image: 'https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      category: 'מדריכי החזרי מס',
-      readTime: 7,
-      url: '/blog/common-tax-refund-mistakes',
-      date: '10.04.2024'
-    },
-    {
-      id: 'work-expenses',
-      title: 'מי זכאי להחזר מס על הוצאות עבודה?',
-      excerpt: 'מדריך מקיף להחזרי מס על הוצאות עבודה - למי מגיע ואיך מקבלים',
-      image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      category: 'מדריכי החזרי מס',
-      readTime: 8,
-      url: '/blog/work-expenses-refund-eligibility',
-      date: '02.04.2024'
-    },
-    {
-      id: 'case-study',
-      title: 'איך קיבלנו ₪15,000 בחזרה ללקוח',
-      excerpt: 'סיפור אמיתי של לקוח שקיבל החזר מס משמעותי ואיך עשינו זאת',
-      image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=2149&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      category: 'סיפורי הצלחה',
-      readTime: 6,
-      url: '/blog/case-study-15000-refund',
-      date: '25.03.2024'
-    },
-    {
-      id: 'tax-updates',
-      title: 'עדכוני חוקי מס 2025',
-      excerpt: 'השינויים העיקריים בחוקי המס לשנת 2025 והשפעתם על החזרי מס',
-      image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      category: 'חדשות מס',
-      readTime: 9,
-      url: '/blog/tax-law-updates-2025',
-      date: '18.03.2024'
-    },
-    {
-      id: 'parent-refunds',
-      title: 'החזרי מס להורים – מה שצריך לדעת',
-      excerpt: 'הזכויות המגיעות להורים והאופן שבו ניתן למקסם את החזרי המס',
-      image: 'https://images.unsplash.com/photo-1602206304582-6f0189901a47?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      category: 'מדריכי החזרי מס',
-      readTime: 7,
-      url: '/blog/tax-refunds-for-parents',
-      date: '10.03.2024'
-    }
-  ];
+const RecentArticles: React.FC<RecentArticlesProps> = ({ articles }) => {
+  // Take only first 5 articles if more are provided
+  const displayedArticles = articles.slice(0, 5);
 
   return (
     <section className="py-12 bg-white">
@@ -80,16 +24,16 @@ const RecentArticles: React.FC = () => {
         </div>
         
         <div className="grid grid-cols-1 gap-8">
-          {articles.map((article, index) => (
+          {displayedArticles.map((article, index) => (
             <article 
               key={article.id}
               className="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 transition-all duration-300 hover:shadow-md hover:-translate-y-1"
             >
               <div className="flex flex-col md:flex-row">
                 <div className="md:w-1/3 h-48 md:h-auto">
-                  <Link to={article.url} className="block h-full">
+                  <Link to={`/blog/${article.slug}`} className="block h-full">
                     <img 
-                      src={article.image} 
+                      src={article.featuredImage} 
                       alt={article.title}
                       className="w-full h-full object-cover"
                     />
@@ -101,10 +45,10 @@ const RecentArticles: React.FC = () => {
                     <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">
                       {article.category}
                     </span>
-                    <span className="text-gray-500 text-sm">{article.date}</span>
+                    <span className="text-gray-500 text-sm">{article.publishDate}</span>
                   </div>
                   
-                  <Link to={article.url}>
+                  <Link to={`/blog/${article.slug}`}>
                     <h3 className="text-xl md:text-2xl font-bold mb-3 hover:text-brand-blue transition-colors">
                       {article.title}
                     </h3>
@@ -121,7 +65,7 @@ const RecentArticles: React.FC = () => {
                     </div>
                     
                     <Link 
-                      to={article.url} 
+                      to={`/blog/${article.slug}`} 
                       className="text-brand-blue font-medium hover:underline flex items-center"
                     >
                       המשך לקרוא
@@ -131,19 +75,19 @@ const RecentArticles: React.FC = () => {
                 </div>
               </div>
               
-              {index < articles.length - 1 && (
+              {index < displayedArticles.length - 1 && (
                 <div className="hidden md:block px-6 py-3 bg-gray-50 border-t border-gray-100">
                   <div className="flex items-center justify-between">
                     <div className="flex items-start">
                       <span className="text-sm font-medium text-gray-700 ml-2">מאמרים דומים:</span>
                       <div className="space-x-2 space-x-reverse">
-                        {[1, 2, 3].map((i) => (
+                        {getRelatedArticles(article.id, 3).map((relatedArticle) => (
                           <Link 
-                            key={i} 
-                            to={`/blog/related-${i}`}
+                            key={relatedArticle.id} 
+                            to={`/blog/${relatedArticle.slug}`}
                             className="text-sm text-gray-600 hover:text-brand-blue hover:underline"
                           >
-                            מאמר קשור {i}
+                            {relatedArticle.title}
                           </Link>
                         ))}
                       </div>

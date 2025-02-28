@@ -8,6 +8,7 @@ import RefundTypes from '@/components/RefundTypes';
 import Testimonials from '@/components/Testimonials';
 import FAQ from '@/components/FAQ';
 import ContactCTA from '@/components/ContactCTA';
+import VideoSection from '@/components/VideoSection';
 
 const Index = () => {
   return (
@@ -15,6 +16,7 @@ const Index = () => {
       <Hero />
       <EligibilityChecker />
       <HowItWorks />
+      <VideoSection />
       <TrustSection />
       <RefundTypes />
       <Testimonials />
