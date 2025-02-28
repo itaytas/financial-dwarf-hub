@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { formatCurrency } from '@/utils/formatters';
 import { 
   ChevronLeft, ChevronRight, Check, Briefcase, 
-  CircleDollarSign, CheckSquare, Calendar, CheckCircle 
+  CircleDollarSign, CheckSquare, Calendar, CheckCircle, Clock 
 } from 'lucide-react';
 
 // Types for our calculator
