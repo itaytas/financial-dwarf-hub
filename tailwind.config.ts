@@ -162,7 +162,8 @@ export default {
 			},
 			fontFamily: {
 				heebo: ['Heebo', 'sans-serif'],
-				rubik: ['Rubik', 'sans-serif']
+				rubik: ['Rubik', 'sans-serif'],
+				arabic: ['Rubik', 'Noto Sans Arabic', 'sans-serif']
 			}
 		}
 	},

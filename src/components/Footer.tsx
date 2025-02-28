@@ -3,8 +3,65 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Twitter, Mail, Lock } from 'lucide-react';
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  language: 'he' | 'ar';
+}
+
+const Footer: React.FC<FooterProps> = ({ language }) => {
   const year = new Date().getFullYear();
+  
+  const translations = {
+    he: {
+      financialDwarf: 'הגמד הפיננסי',
+      description: 'המומחים להחזרי מס בישראל, מסייעים ללקוחות לקבל את הכסף שמגיע להם מרשויות המס.',
+      quickNav: 'ניווט מהיר',
+      home: 'בית',
+      howItWorks: 'איך זה עובד',
+      about: 'מי אנחנו',
+      blog: 'בלוג',
+      contact: 'צור קשר',
+      taxRefunds: 'החזרי מס',
+      employeeRefund: 'החזר מס לשכירים',
+      freelanceRefund: 'החזר מס לעצמאים',
+      pensionRefund: 'החזר מס לפנסיונרים',
+      medicalRefund: 'החזר מס על הוצאות רפואיות',
+      checkEligibility: 'בדיקת זכאות',
+      updates: 'קבלו עדכונים',
+      newsletter: 'הירשמו לניוזלטר שלנו לקבלת עדכונים ומידע חשוב',
+      yourEmail: 'האימייל שלך',
+      ssl: 'SSL מאובטח',
+      rights: '© {year} הגמד הפיננסי | כל הזכויות שמורות',
+      privacy: 'מדיניות פרטיות',
+      terms: 'תנאי שימוש',
+      sitemap: 'מפת האתר'
+    },
+    ar: {
+      financialDwarf: 'القزم المالي',
+      description: 'خبراء استرداد الضرائب في إسرائيل، نساعد العملاء على استعادة أموالهم من سلطات الضرائب.',
+      quickNav: 'تصفح سريع',
+      home: 'الرئيسية',
+      howItWorks: 'كيف يعمل',
+      about: 'من نحن',
+      blog: 'مدونة',
+      contact: 'اتصل بنا',
+      taxRefunds: 'استرداد الضرائب',
+      employeeRefund: 'استرداد ضريبي للموظفين',
+      freelanceRefund: 'استرداد ضريبي للمستقلين',
+      pensionRefund: 'استرداد ضريبي للمتقاعدين',
+      medicalRefund: 'استرداد ضريبي للنفقات الطبية',
+      checkEligibility: 'التحقق من الأهلية',
+      updates: 'احصل على التحديثات',
+      newsletter: 'اشترك في نشرتنا الإخبارية للحصول على التحديثات والمعلومات المهمة',
+      yourEmail: 'بريدك الإلكتروني',
+      ssl: 'SSL آمن',
+      rights: '© {year} القزم المالي | جميع الحقوق محفوظة',
+      privacy: 'سياسة الخصوصية',
+      terms: 'شروط الاستخدام',
+      sitemap: 'خريطة الموقع'
+    }
+  };
+  
+  const t = translations[language];
   
   return (
     <footer className="bg-gray-900 text-white pt-16 pb-8">
@@ -17,10 +74,10 @@ const Footer: React.FC = () => {
                 alt="The Financial Dwarf"
                 className="h-10 w-auto object-contain"
               />
-              <span className="text-lg font-bold ml-2">הגמד הפיננסי</span>
+              <span className="text-lg font-bold ml-2">{t.financialDwarf}</span>
             </Link>
             <p className="text-gray-400 mb-6">
-              המומחים להחזרי מס בישראל, מסייעים ללקוחות לקבל את הכסף שמגיע להם מרשויות המס.
+              {t.description}
             </p>
             <div className="flex space-x-4 rtl:space-x-reverse">
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
@@ -36,56 +93,56 @@ const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h3 className="text-lg font-bold mb-6">ניווט מהיר</h3>
+            <h3 className="text-lg font-bold mb-6">{t.quickNav}</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/" className="text-gray-400 hover:text-white transition-colors">בית</Link>
+                <Link to="/" className="text-gray-400 hover:text-white transition-colors">{t.home}</Link>
               </li>
               <li>
-                <Link to="/how-it-works" className="text-gray-400 hover:text-white transition-colors">איך זה עובד</Link>
+                <Link to="/how-it-works" className="text-gray-400 hover:text-white transition-colors">{t.howItWorks}</Link>
               </li>
               <li>
-                <Link to="/about" className="text-gray-400 hover:text-white transition-colors">מי אנחנו</Link>
+                <Link to="/about" className="text-gray-400 hover:text-white transition-colors">{t.about}</Link>
               </li>
               <li>
-                <Link to="/blog" className="text-gray-400 hover:text-white transition-colors">בלוג</Link>
+                <Link to="/blog" className="text-gray-400 hover:text-white transition-colors">{t.blog}</Link>
               </li>
               <li>
-                <Link to="/contact" className="text-gray-400 hover:text-white transition-colors">צור קשר</Link>
+                <Link to="/contact" className="text-gray-400 hover:text-white transition-colors">{t.contact}</Link>
               </li>
             </ul>
           </div>
           
           <div>
-            <h3 className="text-lg font-bold mb-6">החזרי מס</h3>
+            <h3 className="text-lg font-bold mb-6">{t.taxRefunds}</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/refunds/employee" className="text-gray-400 hover:text-white transition-colors">החזר מס לשכירים</Link>
+                <Link to="/refunds/employee" className="text-gray-400 hover:text-white transition-colors">{t.employeeRefund}</Link>
               </li>
               <li>
-                <Link to="/refunds/freelance" className="text-gray-400 hover:text-white transition-colors">החזר מס לעצמאים</Link>
+                <Link to="/refunds/freelance" className="text-gray-400 hover:text-white transition-colors">{t.freelanceRefund}</Link>
               </li>
               <li>
-                <Link to="/refunds/pension" className="text-gray-400 hover:text-white transition-colors">החזר מס לפנסיונרים</Link>
+                <Link to="/refunds/pension" className="text-gray-400 hover:text-white transition-colors">{t.pensionRefund}</Link>
               </li>
               <li>
-                <Link to="/refunds/medical" className="text-gray-400 hover:text-white transition-colors">החזר מס על הוצאות רפואיות</Link>
+                <Link to="/refunds/medical" className="text-gray-400 hover:text-white transition-colors">{t.medicalRefund}</Link>
               </li>
               <li>
-                <Link to="/refunds/eligibility" className="text-gray-400 hover:text-white transition-colors">בדיקת זכאות</Link>
+                <Link to="/refunds/eligibility" className="text-gray-400 hover:text-white transition-colors">{t.checkEligibility}</Link>
               </li>
             </ul>
           </div>
           
           <div>
-            <h3 className="text-lg font-bold mb-6">קבלו עדכונים</h3>
-            <p className="text-gray-400 mb-4">הירשמו לניוזלטר שלנו לקבלת עדכונים ומידע חשוב</p>
+            <h3 className="text-lg font-bold mb-6">{t.updates}</h3>
+            <p className="text-gray-400 mb-4">{t.newsletter}</p>
             
             <form className="mb-6">
               <div className="flex">
                 <input
                   type="email"
-                  placeholder="האימייל שלך"
+                  placeholder={t.yourEmail}
                   className="bg-gray-800 text-white px-4 py-2 rounded-r-lg w-full focus:outline-none focus:ring-2 focus:ring-brand-blue"
                 />
                 <button
@@ -99,7 +156,7 @@ const Footer: React.FC = () => {
             
             <div className="flex items-center text-gray-400">
               <Lock className="h-4 w-4 ml-2" />
-              <span className="text-sm">SSL מאובטח</span>
+              <span className="text-sm">{t.ssl}</span>
             </div>
           </div>
         </div>
@@ -107,18 +164,18 @@ const Footer: React.FC = () => {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm mb-4 md:mb-0">
-              © {year} הגמד הפיננסי | כל הזכויות שמורות
+              {t.rights.replace('{year}', year.toString())}
             </p>
             
             <div className="flex space-x-4 rtl:space-x-reverse">
               <Link to="/privacy" className="text-gray-400 hover:text-white text-sm transition-colors">
-                מדיניות פרטיות
+                {t.privacy}
               </Link>
               <Link to="/terms" className="text-gray-400 hover:text-white text-sm transition-colors">
-                תנאי שימוש
+                {t.terms}
               </Link>
               <Link to="/sitemap" className="text-gray-400 hover:text-white text-sm transition-colors">
-                מפת האתר
+                {t.sitemap}
               </Link>
             </div>
           </div>
