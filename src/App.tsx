@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import MainLayout from "./layouts/MainLayout";
 import HowItWorksPage from "./pages/HowItWorks";
+import EligibilityCalculatorPage from "./pages/EligibilityCalculator";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<MainLayout><Index /></MainLayout>} />
           <Route path="/how-it-works" element={<HowItWorksPage />} />
+          <Route path="/eligibility" element={<EligibilityCalculatorPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

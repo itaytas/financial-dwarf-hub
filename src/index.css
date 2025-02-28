@@ -159,4 +159,21 @@
   .transition-all-300 {
     @apply transition-all duration-300;
   }
+  
+  /* Add eligibility page specific styles */
+  .eligibility-card {
+    @apply bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+  
+  .eligibility-card-content {
+    @apply p-5;
+  }
+  
+  .eligibility-card-header {
+    @apply p-5 text-white;
+  }
+  
+  .form-checkbox {
+    @apply rounded border-gray-300 text-brand-blue focus:ring-brand-blue;
+  }
 }
