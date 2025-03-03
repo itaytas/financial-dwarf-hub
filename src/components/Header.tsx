@@ -75,7 +75,7 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
           <Link to="/how-it-works" className={`link-hover text-sm font-medium transition-colors duration-300 ${isScrolled ? 'text-gray-800' : 'text-white'}`}>
             {t.howItWorks}
           </Link>
-          <Link to="/about" className={`link-hover text-sm font-medium transition-colors duration-300 ${isScrolled ? 'text-gray-800' : 'text-white'}`}>
+          <Link to="/about-us" className={`link-hover text-sm font-medium transition-colors duration-300 ${isScrolled ? 'text-gray-800' : 'text-white'}`}>
             {t.about}
           </Link>
           <Link to="/blog" className={`link-hover text-sm font-medium transition-colors duration-300 ${isScrolled ? 'text-gray-800' : 'text-white'}`}>
@@ -133,7 +133,7 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
             <Link to="/how-it-works" className="text-gray-800 font-medium" onClick={toggleMenu}>
               {t.howItWorks}
             </Link>
-            <Link to="/about" className="text-gray-800 font-medium" onClick={toggleMenu}>
+            <Link to="/about-us" className="text-gray-800 font-medium" onClick={toggleMenu}>
               {t.about}
             </Link>
             <Link to="/blog" className="text-gray-800 font-medium" onClick={toggleMenu}>
