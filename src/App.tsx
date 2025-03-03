@@ -11,6 +11,7 @@ import HowItWorksPage from "./pages/HowItWorks";
 import EligibilityCalculatorPage from "./pages/EligibilityCalculator";
 import Blog from "./pages/Blog";
 import ArticleTemplate from "./pages/ArticleTemplate";
+import AboutUs from "./pages/AboutUs";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/category/:categoryId" element={<Blog />} />
           <Route path="/blog/:articleId" element={<ArticleTemplate />} />
+          <Route path="/about-us" element={<AboutUs />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
