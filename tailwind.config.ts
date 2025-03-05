@@ -128,14 +128,6 @@ export default {
 						transform: 'translateY(-10px)'
 					}
 				},
-				'bounce-slow': {
-					'0%, 100%': {
-						transform: 'translateY(0)'
-					},
-					'50%': {
-						transform: 'translateY(-15px)'
-					}
-				},
 				'coins-drop': {
 					'0%': {
 						transform: 'translateY(-20px)',
@@ -165,7 +157,6 @@ export default {
 				'fade-out': 'fade-out 0.5s ease-out',
 				'scale-in': 'scale-in 0.3s ease-out',
 				'float': 'float 3s ease-in-out infinite',
-				'bounce-slow': 'bounce-slow 4s ease-in-out infinite',
 				'coins-drop': 'coins-drop 2s ease-in-out infinite',
 				'pulse-soft': 'pulse-soft 2s ease-in-out infinite'
 			},
